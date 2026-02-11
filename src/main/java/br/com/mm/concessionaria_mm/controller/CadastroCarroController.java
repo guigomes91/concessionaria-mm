@@ -10,16 +10,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/carros")
+
 public class CadastroCarroController {
+    private static final Logger log = Logger.getLogger(CadastroCarroController.class.getName());
 
-    private final CarroRepository carroRepository;
+}
 
-    public CadastroCarroController(CarroRepository carroRepository) {
-        this.carroRepository = carroRepository;
-    }
+private final CarroRepository carroRepository;
 
-    @GetMapping
-    public List<Carro> consulta() {
-        return carroRepository.findAll();
-    }
+public CadastroCarroController(CarroRepository carroRepository) {
+    this.carroRepository = carroRepository;
+}
+
+@GetMapping
+public List<Carro> consulta() {
+    return carroRepository.findAll();
+    log.info("CadastroCarroController#consulta - consultando carros");
+}
 }
