@@ -14,17 +14,15 @@ import java.util.List;
 public class CadastroCarroController {
     private static final Logger log = Logger.getLogger(CadastroCarroController.class.getName());
 
-}
+    private final CarroRepository carroRepository;
 
-private final CarroRepository carroRepository;
+    public CadastroCarroController(CarroRepository carroRepository) {
+        this.carroRepository = carroRepository;
+    }
 
-public CadastroCarroController(CarroRepository carroRepository) {
-    this.carroRepository = carroRepository;
-}
-
-@GetMapping
-public List<Carro> consulta() {
-    return carroRepository.findAll();
-    log.info("CadastroCarroController#consulta - consultando carros");
-}
+    @GetMapping
+    public List<Carro> consulta() {
+        log.info("CadastroCarroController#consulta - consultando carros");
+        return carroRepository.findAll();
+    }
 }
