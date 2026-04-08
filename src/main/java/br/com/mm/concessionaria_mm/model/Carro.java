@@ -1,28 +1,31 @@
 package br.com.mm.concessionaria_mm.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "carro")
 public class Carro {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carro_seq")
+    @SequenceGenerator(
+            name = "carro_seq",
+            sequenceName = "carro_sequence",
+            allocationSize = 1
+    )
+    private Long codigo;
+
     private String cor;
     private String marca;
+    private String transactionId;
 
     public Carro() {}
 
-    public Carro(int codigo, String cor, String marca) {
-        this.codigo = codigo;
+    public Carro(String cor, String marca) {
         this.cor = cor;
         this.marca = marca;
     }
 
-    public int getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
@@ -32,5 +35,21 @@ public class Carro {
 
     public String getMarca() {
         return marca;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 }
